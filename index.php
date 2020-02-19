@@ -7,6 +7,6 @@
     <title>examen PHP</title>
 </head>
 <body>
-    <h2>bienvenidos al imalaia</h2>
+    <h2>bienvenidos al imalaia!</h2>
 </body>
 </html>
