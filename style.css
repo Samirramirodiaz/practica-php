@@ -1,0 +1,39 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Century Gothic;
+}
+
+h2{
+   text-align: center;
+   font-size: xx-large;
+}
+
+.contenedor{
+    padding: 0px;
+    margin-left: auto;
+    width:100%;
+}
+
+.card{
+    background: rgb(156, 228, 247);
+    padding: 0px;
+    margin: 20px auto;
+    width: 35%;
+    height: 108px;
+}
+
+.nombre {
+    padding: 10px;
+}
+
+.otro{
+    margin-left: 15px;
+}
+
+.ultConexion {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 13px;
+}
