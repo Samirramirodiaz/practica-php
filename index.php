@@ -21,7 +21,7 @@ if($varSesion == null || $varSesion == ""){
         <h2>Bienvenidos al Imalaya</h2>
         <div class="a_la_derecha">
             <label for=""><?php echo $varSesion?></label>
-            <a href="cerrar_sesion.php">cerrar sesion</a>
+            <a href="cerrar_sesion.php"> cerrar sesion</a>
         </div>
     </header>
     <div class="contenedor">
@@ -42,10 +42,10 @@ if($varSesion == null || $varSesion == ""){
                 $newDate = date("d/m/Y", strtotime($mostrar['ult_sesion']));
             ?>
                 <div class="card">
-                    <h3 class="nombre"><?php echo $mostrar['nombre'] ?></h3>
+                    <h3 class="nombre"><?php echo $mostrar['nombre']?></h3>
                     <p class="otro">mail: <?php echo $mostrar['mail'] ?></p>
                     <p class="otro">password: <?php echo $mostrar['password'] ?></p>
-                    <label class="ultConexion">ultima conexion: <?php echo $newDate ?> </label>
+                    <label class="ultConexion">ultima conexion: <?php echo $mostrar['nombre'] == $varSesion ? "En linea" : $newDate ?> </label>
                 </div>
             <?php
             }
