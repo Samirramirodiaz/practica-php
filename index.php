@@ -1,56 +1,45 @@
-<?php
-require("conexion.php");
-session_start();
-$varSesion = $_SESSION['usuario'];
-if($varSesion == null || $varSesion == ""){
-    echo'No tenés permisos para entrar ';
-    die();
-}
-?>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 
 <head>
+    <?php 
+    session_start();
+    $usuario = $_SESSION['usuario'];
+    if($usuario == null || $usuario == ""){
+        echo 'Debes iniciar sesión para continuar';
+        echo ' <a href="login.php">iniciar sesión</a>';
+        die();
+    }
+    require "conexion.php" ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilo3.css">
-    <title>examen php</title>
+    <link rel="stylesheet" href="style2.css">
+    <title>Document</title>
 </head>
 
 <body>
-    <header>
-        <h2>Bienvenidos al Imalaya</h2>
-        <div class="a_la_derecha">
-            <label for=""><?php echo $varSesion?></label>
-            <a href="cerrar_sesion.php"> cerrar sesion</a>
+    <div class="header">
+        <p class="nombre">
+            <?php echo $usuario ?>
+        </p>
+        <a style="float: right;margin-top: -18px;" href="cerrar_sesion.php">cerrar sesión</a>
+    </div>
+    <div class="usuarios">
+    <?php
+    $sql = "SELECT * FROM usuarios";
+    $query = mysqli_query($conexion,$sql);
+    while ($registros = mysqli_fetch_array($query)) {
+        ?>
+        <div class="usuario">
+            <h3><?php echo $registros['usuario']; ?></h3>
+            <p><strong>Gmail: </strong><?php echo $registros['mail']; ?></p>
+            <p><strong>Última conexión: </strong><?php echo $registros['ult_sesion']; ?></p>
         </div>
-    </header>
-    <div class="contenedor">
-        <div class="formulario">
-            <form action="agregarUsuario.php" method="POST">
-                <input type="text" placeholder="nombre" name="nombre" id="">
-                <input type="email" placeholder="email" name="mail" id="">
-                <input type="password" placeholder="contraseña" name="password" id="">
-                <input type="date" placeholder="fecha" name="ult_sesion" id="">
-                <button type="submit">Enviar</button>
-            </form>
-        </div>
-        <div class="">
-            <?php
-            $sql = "SELECT * FROM usuarios";
-            $resultado = mysqli_query($conexion, $sql);
-            while ($mostrar = mysqli_fetch_array($resultado)) {
-                $newDate = date("d/m/Y", strtotime($mostrar['ult_sesion']));
-            ?>
-                <div class="card">
-                    <h3 class="nombre"><?php echo $mostrar['nombre']?></h3>
-                    <p class="otro">mail: <?php echo $mostrar['mail'] ?></p>
-                    <p class="otro">password: <?php echo $mostrar['password'] ?></p>
-                    <label class="ultConexion">ultima conexion: <?php echo $mostrar['nombre'] == $varSesion ? "En linea" : $newDate ?> </label>
-                </div>
-            <?php
-            }
-            ?>
-        </div>
+        
+        <?php
+    }
+    
+    ?>
     </div>
 
 </body>
